@@ -1,0 +1,11 @@
+{
+  "name": "operaciones-crud",
+  "version": "1.0.0",
+  "description": "operaciones CRUD en mysql utilizando node y express js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
