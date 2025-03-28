@@ -1,10 +1,10 @@
-IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'HighPoint')
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'Highpoint')
 BEGIN
-    CREATE DATABASE HighPoint;
+    CREATE DATABASE Highpoint;
 END;
 GO
 
-USE HighPoint;
+USE Highpoint;
 GO
 
 -- Tabla grupo
