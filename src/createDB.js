@@ -8,13 +8,30 @@ const config = ({
   trustServerCertificate: true
 });
 
-
-async function readDB () {
-  const conection = await sql.connect(config);
-  const content =  await conection.query("select * from Productos");
-  return content;
+async function readTable(table) {
+  try{
+    const conection = await sql.connect(config); 
+    const result = await conection.query(`SELECT * FROM ${table}`); 
+    conection.close();
+    return result.recordset; 
+  } catch (err){
+    console.error(err);
+    conection.close();
+  }
 }
 
-readDB().then(data =>{
-  console.log(data);
-})
+async function customQuery(customQuery) {
+  try{
+    const conection = await sql.connect(config); 
+    const q = await conection.query(customQuery); 
+    conection.close();
+    return q.recordsets;
+  } catch (err){
+    console.error(err);
+    conection.close();
+  }
+}
+
+customQuery("INSERT INTO Productos (Nombre, Precio) VALUES ('Laptop', 1500.00)")
+let test = await customQuery("Select * from Productos");
+console.log(test);  
