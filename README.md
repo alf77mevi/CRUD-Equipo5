@@ -1,20 +1,19 @@
-# CRUD-Equipo5
-# REST API para operaciones CRUD utilizando Node y Express.js
+# CRUD-Equipo5 - REST API para operaciones CRUD utilizando Node y Express.js
 
-### Método de utilización
- 1) Inicializar un nuevo codespace (tambien se puede realizar de manera local luego de clonar el repositorio)
+## Método de utilización
+### 1) Inicializar un nuevo codespace (tambien se puede realizar de manera local luego de clonar el repositorio)
 
 ### 2) Inicializar las dependencias de npm
 ```sh
 npm install
 ```
 
-## 3) Crear una instancia de SQL Server con Docker  
+### 3) Crear una instancia de SQL Server con Docker  
 ```sh
 docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourPassword123!' \
     -p 1433:1433 --name sqlserver -d mcr.microsoft.com/mssql/server:2022-latest
 ```
-## 4) Instalar sqlcmd
+### 4) Instalar sqlcmd
 ```sh
 sudo apt update
 sudo apt install mssql-tools unixodbc-dev
@@ -22,7 +21,7 @@ echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-## 5) Inicializar la base de datos utilizando sqlcmd y initDB.sql
+### 5) Inicializar la base de datos utilizando sqlcmd y initDB.sql
 ```sh
 sqlcmd -S localhost -U sa -P YourPassword123! -i initDB.sql
 ```
@@ -47,7 +46,7 @@ Highpoint
 
 (5 rows affected)     
 ```
-## 6) Inicializar datos dentro de la base de datos
+### 6) Inicializar datos dentro de la base de datos
 ```sh
 sqlcmd -S localhost -U sa -P YourPassword123! -i insertTest.sql
 ```
@@ -63,7 +62,7 @@ sqlcmd -S localhost -U sa -P YourPassword123!
 ```
 Deberiamos de poder ver los nuevos datos dentro de la base de datos
 
-## 7) Iniciar el servidor 
+### 7) Iniciar el servidor 
 ```sh
 npm run start
 ```
