@@ -14,21 +14,21 @@ INSERT INTO alumno (matriculaAlumno, nombre, apellidoPaterno, apellidoMaterno) V
 ('A010', 'Laura', 'Mendoza', 'Castillo');
 GO
 
--- INSERT INTO departamento (idDepartamento, nombreDepartamento) VALUES
--- (1, 'Recursos Humanos'),
--- (2, 'Finanzas'),
--- (3, 'Tecnología'),
--- (4, 'Marketing'),
--- (5, 'Ventas'),
--- (6, 'Operaciones'),
--- (7, 'Atención al Cliente'),
--- (8, 'Investigación y Desarrollo'),
--- (9, 'Logística'),
--- (10, 'Legal');
--- GO
+INSERT INTO departamento (idDepartamento, nombreDepartamento) VALUES
+(1, 'Recursos Humanos'),
+(2, 'Finanzas'),
+(3, 'Tecnología'),
+(4, 'Marketing'),
+(5, 'Ventas'),
+(6, 'Operaciones'),
+(7, 'Atención al Cliente'),
+(8, 'Investigación y Desarrollo'),
+(9, 'Logística'),
+(10, 'Legal');
+GO
 
--- SELECT * FROM departamento;
--- GO
+SELECT * FROM departamento;
+GO
 
 SELECT * FROM alumno;
 GO
