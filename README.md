@@ -8,6 +8,8 @@ Método de utilización
 2) Inicializar las dependencias de npm <br>
 ``` $ npm install ``` <br>
 
-3) Crear una instancia de SqlServer con docker <br>
-``` docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourPassword123!' \
-   -p 1433:1433 --name sqlserver -d mcr.microsoft.com/mssql/server:2022-latest ```
+3) Crear una instancia de SQL Server con Docker  
+```sh
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=YourPassword123!' \
+    -p 1433:1433 --name sqlserver -d mcr.microsoft.com/mssql/server:2022-latest
+```
