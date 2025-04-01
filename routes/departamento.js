@@ -19,7 +19,6 @@ router.get("/:id", async (req, res) => {
   try {
     await sql.connect(DBconfig);
     const idQuery = parseInt(req.params.id);
-    console.log(idQuery);
 
     if (!idQuery) {
       res.send("ID NO VALIDO");
@@ -74,5 +73,41 @@ router.post("/", async (req, res) => {
     sql.close();
   }
 });
+
+router.delete("/:id", async (req, res) => {
+  let transaction;
+  try {
+    await sql.connect(DBconfig);
+    const idQuery = parseInt(req.params.id);
+
+    if (!idQuery) {
+      res.send("ID NO VALIDO");
+    } else {
+      transaction = new sql.Transaction();
+      
+      await transaction.begin();
+      const request = new sql.Request(transaction);
+      request.input("searchID", sql.Int, idQuery);
+
+      const depToDelete = await request.query("SELECT * FROM departamento WHERE idDepartamento = @searchID");
+      if (depToDelete.recordset.length){
+        const result = await request.query(
+          "DELETE FROM departamento WHERE idDepartamento = @searchID",
+        );
+        res.send(`Se elimino el departamento con id ${idQuery}`);
+      } else {
+        res.send(`No existe un departamento con id ${idQuery}`);
+      }
+
+      await transaction.commit();
+    }
+  } catch (error) {
+    console.error("No se ejecuto la transaccion:", error);
+    await transaction.rollback();
+  } finally {
+    sql.close();
+  }
+});
+
 
 export default router;
