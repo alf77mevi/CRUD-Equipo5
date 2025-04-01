@@ -89,8 +89,10 @@ router.delete("/:id", async (req, res) => {
       const request = new sql.Request(transaction);
       request.input("searchID", sql.Int, idQuery);
 
-      const depToDelete = await request.query("SELECT * FROM departamento WHERE idDepartamento = @searchID");
-      if (depToDelete.recordset.length){
+      const depToDelete = await request.query(
+        "SELECT * FROM departamento WHERE idDepartamento = @searchID",
+      );
+      if (depToDelete.recordset.length) {
         const result = await request.query(
           "DELETE FROM departamento WHERE idDepartamento = @searchID",
         );
@@ -109,7 +111,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.patch("/:id", async (req, res) =>{
+router.patch("/:id", async (req, res) => {
   let transaction;
   try {
     await sql.connect(DBconfig);
@@ -118,25 +120,27 @@ router.patch("/:id", async (req, res) =>{
     if (!idQuery) {
       res.send("ID NO VALIDO");
     } else {
-
       transaction = new sql.Transaction();
       await transaction.begin();
       const request = new sql.Request(transaction);
       request.input("searchID", sql.Int, idQuery);
 
-      const user = await request.query(
+      let user = await request.query(
         "SELECT * FROM departamento WHERE idDepartamento = @searchID",
       );
-      if (user.recordset.length) {
-        
-        const { idDepartamento, nombreDepartamento } = req.body;
-        if(nombreDepartamento){
-      
-        }
-        res.send(user.recordset);
 
+      if (user.recordset.length) {
+        const { nombreDepartamento } = req.body;
+        request.input("nombreDepartamento", sql.VarChar, nombreDepartamento);
+        await request.query(
+          "UPDATE departamento SET nombreDepartamento = @nombreDepartamento WHERE idDepartamento = @searchID",
+        );
+        user = await request.query(
+          "SELECT * FROM departamento WHERE idDepartamento = @searchID",
+        );
+        res.send(user.recordset);
       } else {
-        res.send("EL ID NO EXISTE");
+        res.send("ID INVALIDO");
       }
       await transaction.commit();
     }
@@ -146,7 +150,6 @@ router.patch("/:id", async (req, res) =>{
   } finally {
     sql.close();
   }
-})
-
+});
 
 export default router;
