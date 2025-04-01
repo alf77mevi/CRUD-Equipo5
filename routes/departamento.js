@@ -84,7 +84,7 @@ router.delete("/:id", async (req, res) => {
       res.send("ID NO VALIDO");
     } else {
       transaction = new sql.Transaction();
-      
+
       await transaction.begin();
       const request = new sql.Request(transaction);
       request.input("searchID", sql.Int, idQuery);
@@ -108,6 +108,45 @@ router.delete("/:id", async (req, res) => {
     sql.close();
   }
 });
+
+router.patch("/:id", async (req, res) =>{
+  let transaction;
+  try {
+    await sql.connect(DBconfig);
+    const idQuery = parseInt(req.params.id);
+
+    if (!idQuery) {
+      res.send("ID NO VALIDO");
+    } else {
+
+      transaction = new sql.Transaction();
+      await transaction.begin();
+      const request = new sql.Request(transaction);
+      request.input("searchID", sql.Int, idQuery);
+
+      const user = await request.query(
+        "SELECT * FROM departamento WHERE idDepartamento = @searchID",
+      );
+      if (user.recordset.length) {
+        
+        const { idDepartamento, nombreDepartamento } = req.body;
+        if(nombreDepartamento){
+      
+        }
+        res.send(user.recordset);
+
+      } else {
+        res.send("EL ID NO EXISTE");
+      }
+      await transaction.commit();
+    }
+  } catch (error) {
+    console.error("No se ejecuto la transaccion:", error);
+    await transaction.rollback();
+  } finally {
+    sql.close();
+  }
+})
 
 
 export default router;
