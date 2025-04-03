@@ -1,10 +1,10 @@
 # CRUD-Equipo5 - REST API para operaciones CRUD utilizando Node y Express.js
 
-## Método de utilización
+## Método de utilización (utilizando la ruta de departamento como ejemplo)
 
 ### 1) Inicializar un nuevo codespace (tambien se puede realizar de manera local luego de clonar el repositorio)
 
-### 2) Inicializar las dependencias de npm
+### 2) Inicializar las dependencias de npm a travez de la terminal
 
 ```sh
 npm install
@@ -87,15 +87,71 @@ npm run start
 Esperando el mensaje en terminal
 
 ```sh
-Servidor en localhost:3000
-conectado a sql
+Servidor activo en http://localhost:3000
 ```
 
-Si visitamos `http://localhost:3000/departamentos` o `http://localhost:3000/alumnos` deberiamos
-de poder observar los datos que acabamos de insertar.
+Si realizamos una petición GET a travez de nuestro navegador, visitando el enlace `http://localhost:3000/departamentos` 
+deberiamos de poder observar los datos que acabamos de insertar.
+```sh
+[
+    {
+    "idDepartamento": 1,
+    "nombreDepartamento": "Mathematics"
+    },
+    {
+    "idDepartamento": 2,
+    "nombreDepartamento": "Computer Science"
+    },
+    {
+    "idDepartamento": 3,
+    "nombreDepartamento": "Physics"
+    }
+]
+```
+### Operaciones CRUD
+Para estos ejemplos se tomara como url de nuestro API `http://localhost:3000/departamentos`, sin embargo tambien funciona si
+nuestro puesto es publico, solo hay que tener el link correcto de nuestra base de datos, asegurandonos de utilizar el router `/departamentos`
 
-<img width="436" alt="image" src="https://github.com/user-attachments/assets/4648d33d-064a-4e51-b3f1-96eacb3b0298" />
-
-Podemos obtener la misma información atravez de POSTMAN
-
-<img width="1338" alt="image" src="https://github.com/user-attachments/assets/aa76377a-2ba2-43fd-a4f6-64d124027fc5" />
+Dentro del repositorio se encuentra un directorio `/ejemplosUso`
+donde el archivo `peticiones.js` cuenta con un caso de uso cual emplea multiples funciones para crear, leer, eliminar y actualizar departamentos
+para correrlo, debemos de tener nuestro servidor activo, y dentro de otra terminal ejecutamos `node ejemplosUso/peticiones.js ` deberiamos de obtener
+un output similar al siguiente:
+```sh
+Leyendo todos los departamentos:
+[
+  { idDepartamento: 1, nombreDepartamento: 'Mathematics' },
+  { idDepartamento: 2, nombreDepartamento: 'Computer Science' },
+  { idDepartamento: 3, nombreDepartamento: 'Physics' }
+]
+Creando un nuevo departamento...
+Respuesta del servidor: Agregando el departamento: Departamento de Innovación con ID: 10
+Leyendo los departamentos después de la creación:
+[
+  { idDepartamento: 1, nombreDepartamento: 'Mathematics' },
+  { idDepartamento: 2, nombreDepartamento: 'Computer Science' },
+  { idDepartamento: 3, nombreDepartamento: 'Physics' },
+  {
+    idDepartamento: 10,
+    nombreDepartamento: 'Departamento de Innovación'
+  }
+]
+Actualizando el departamento...
+http://localhost:3000/departamentos//10
+Respuesta del servidor: [{"idDepartamento":10,"nombreDepartamento":"Innovación y Desarrollo"}]
+Leyendo los departamentos después de la actualización:
+[
+  { idDepartamento: 1, nombreDepartamento: 'Mathematics' },
+  { idDepartamento: 2, nombreDepartamento: 'Computer Science' },
+  { idDepartamento: 3, nombreDepartamento: 'Physics' },
+  { idDepartamento: 10, nombreDepartamento: 'Innovación y Desarrollo' }
+]
+Eliminando el departamento...
+http://localhost:3000/departamentos//10
+Respuesta del servidor: Se elimino el departamento con id 10
+Leyendo los departamentos después de la eliminación:
+[
+  { idDepartamento: 1, nombreDepartamento: 'Mathematics' },
+  { idDepartamento: 2, nombreDepartamento: 'Computer Science' },
+  { idDepartamento: 3, nombreDepartamento: 'Physics' }
+]
+```
