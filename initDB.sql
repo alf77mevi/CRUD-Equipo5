@@ -1,5 +1,7 @@
 DROP DATABASE IF EXISTS Highpoint;
 CREATE DATABASE Highpoint;
+GO
+
 USE Highpoint;
 GO
 
