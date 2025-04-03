@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import departamentos from "../routes/departamento.js";
+import alumnos from "../routes/grupo.js"
 
 const app = express();
 const PUERTO = 3000;
@@ -8,7 +9,7 @@ const PUERTO = 3000;
 app.use(bodyParser.json());
 
 app.use("/departamento", departamentos);
-//app.use("/alumnos")
+app.use("/alumno", alumnos);
 
 app.listen(PUERTO, () =>
   console.log(`Servidor activo en http://localhost:${PUERTO}`),
