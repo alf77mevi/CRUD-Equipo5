@@ -6,7 +6,10 @@ const app = express();
 const PUERTO = 3000;
 
 app.use(bodyParser.json());
-app.use("/departamentos", departamentos);
+
+app.use("/departamento", departamentos);
+//app.use("/alumnos")
+
 app.listen(PUERTO, () =>
   console.log(`Servidor activo en http://localhost:${PUERTO}`),
 );
