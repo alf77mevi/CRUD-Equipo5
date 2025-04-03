@@ -1,4 +1,3 @@
-
 const API = "http://localhost:3000/departamentos/";
 
 async function leerDepartamentos() {
@@ -13,7 +12,7 @@ async function leerDepartamentos() {
 
 async function leerDepartamentosID(ID) {
   try {
-    const response = await fetch(API+ID);
+    const response = await fetch(API + ID);
     const json = await response.json();
     console.log(json);
   } catch (err) {
@@ -33,7 +32,7 @@ async function crearDepartamento(idDepartamento, nombreDepartamento) {
         nombreDepartamento,
       }),
     });
-    const data = await response.text(); 
+    const data = await response.text();
     console.log("Respuesta del servidor:", data);
   } catch (err) {
     console.error("Error al insertar el departamento:", err);
@@ -52,7 +51,7 @@ async function actualizarDepartamento(idDepartamento, nombreDepartamento) {
         nombreDepartamento,
       }),
     });
-    const data = await response.text(); 
+    const data = await response.text();
     console.log("Respuesta del servidor:", data);
   } catch (err) {
     console.error("Error al insertar el departamento:", err);
@@ -66,9 +65,9 @@ async function eliminarDepartamento(idDepartamento) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-      }
+      },
     });
-    const data = await response.text(); 
+    const data = await response.text();
     console.log("Respuesta del servidor:", data);
   } catch (err) {
     console.error("Error al eliminar el departamento:", err);

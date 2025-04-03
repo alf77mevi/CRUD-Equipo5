@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import departamentos from "../routes/departamento.js";
-import alumnos from "../routes/grupo.js"
+import alumnos from "../routes/alumno.js";
 
 const app = express();
 const PUERTO = 3000;

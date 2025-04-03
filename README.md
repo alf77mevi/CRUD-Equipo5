@@ -90,8 +90,9 @@ Esperando el mensaje en terminal
 Servidor activo en http://localhost:3000
 ```
 
-Si realizamos una petición GET a travez de nuestro navegador, visitando el enlace `http://localhost:3000/departamentos` 
+Si realizamos una petición GET a travez de nuestro navegador, visitando el enlace `http://localhost:3000/departamentos`
 deberiamos de poder observar los datos que acabamos de insertar.
+
 ```sh
 [
     {
@@ -108,7 +109,9 @@ deberiamos de poder observar los datos que acabamos de insertar.
     }
 ]
 ```
+
 ### Operaciones CRUD
+
 Para estos ejemplos se tomara como url de nuestro API `http://localhost:3000/departamentos`, sin embargo tambien funciona si
 nuestro puesto es publico, solo hay que tener el link correcto de nuestra base de datos, asegurandonos de utilizar el router `/departamentos`
 
@@ -116,6 +119,7 @@ Dentro del repositorio se encuentra un directorio `/ejemplosUso`
 donde el archivo `peticiones.js` cuenta con un caso de uso cual emplea multiples funciones para crear, leer, eliminar y actualizar departamentos
 para correrlo, debemos de tener nuestro servidor activo, y dentro de otra terminal ejecutamos `node ejemplosUso/peticiones.js ` deberiamos de obtener
 un output similar al siguiente:
+
 ```sh
 Leyendo todos los departamentos:
 [
